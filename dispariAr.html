@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Array [<span id="array"></span>]</h1>
+    <h2 id="risultato"></h2>
+
+    <script>
+
+        let arr = [];
+        const num = [];
+
+        function creaArray(n) {
+            for (let i = 0; i < n; i++) {
+                arr.push((Math.floor(Math.random() * 10)).toString());
+            }
+            document.getElementById('array').innerHTML = arr;
+            arr.sort();
+            arr.reverse();
+        }
+
+        function objNum(a) {
+            creaArray(15);
+            for (let j = 0; j < (a.length); j++) {
+                let contatore = 0;
+                for (let k = 0; k < a.length; k++) {
+                    if (a[j] === a[k]) {
+                        contatore += 1;
+                    }
+                }
+                num.push(new Array(a[j], contatore));
+            }
+        }
+
+        function numero(obj) {
+            let valore = 0;
+            let contatore = 10;
+            let risultato = '';
+            objNum(arr);
+
+            for (let value = 0; value < (obj.length); value++) {
+                let sub = obj[value]
+                valore = sub[(sub.length - 1)];
+                if ((valore % 2) === 0) {
+                    continue;
+                } else {
+                    if (valore === contatore) {
+                        risultato = sub[0];
+                    }
+                    else if (valore > contatore) {
+                        continue
+
+                    }
+                    else {
+                        contatore = valore;
+                    }
+                }
+            }
+            document.getElementById('risultato').innerHTML = 'il valore ripetuto dispari volte è ' + risultato;
+        }
+
+        numero(num);
+
+    </script>
+
+</body>
+
+</html>
